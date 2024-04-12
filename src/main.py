@@ -1,4 +1,5 @@
-from gui_stuff import Window, Point, Line, Cell
+from cell import Cell
+from gui_stuff import Window, Point
 
 
 
