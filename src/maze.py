@@ -18,7 +18,11 @@ class Maze:
         ):
         self.x1 = x1
         self.y1 = y1
+        if num_rows <= 0:
+            raise ValueError("Number of rows must be a positive integer")
         self.num_rows = num_rows
+        if num_cols <= 0:
+            raise ValueError("Number of columns must be a positive integer")
         self.num_cols = num_cols
         self.cell_size_x = cell_size_x
         self.cell_size_y = cell_size_y
@@ -26,6 +30,9 @@ class Maze:
         self.seed = random.seed(seed) if seed is not None else seed
         self._cells = [[None for i in range(0, num_rows)] for i in range(0, num_cols)]
         self._create_cells()
+        self._break_entrance_and_exit()
+        self._break_walls_r(0, 0)
+        self._reset_cells_visited()
 
     
     def _create_cells(self):
@@ -107,3 +114,9 @@ class Maze:
             
             # Move to the next cell
             self._break_walls_r(next_cell_x, next_cell_y)
+    
+
+    def _reset_cells_visited(self):
+        for i in range(0, self.num_cols):
+            for j in range(0, self.num_rows):
+                self._cells[i][j].visited = False
