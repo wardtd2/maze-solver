@@ -36,7 +36,6 @@ class Tests(unittest.TestCase):
         with self.assertRaises(ValueError):
             m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
 
-
     
     def test_maze_no_cols(self):
         num_cols = 0
