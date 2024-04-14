@@ -1,5 +1,6 @@
 from cell import Cell
 from gui_stuff import Window, Point
+from maze import Maze
 
 
 
@@ -22,15 +23,16 @@ def main():
     cell_4 = Cell(False, True, False, True, 500, 100, 550, 150, win)
     cell_5 = Cell(True, True, True, True, 600, 100, 650, 150, win)
 
-    cell_0.draw(100, 100, 150, 150)
-    cell_1.draw(200, 100, 250, 150)
-    cell_2.draw(300, 100, 350, 150)
-    cell_3.draw(400, 100, 450, 150)
-    cell_4.draw(500, 100, 550, 150)
-    cell_5.draw(600, 100, 650, 150)
+    # cell_0.draw(100, 100, 150, 150)
+    # cell_1.draw(200, 100, 250, 150)
+    # cell_2.draw(300, 100, 350, 150)
+    # cell_3.draw(400, 100, 450, 150)
+    # cell_4.draw(500, 100, 550, 150)
+    # cell_5.draw(600, 100, 650, 150)
     
-    cell_0.draw_move(cell_1, False)
-    cell_2.draw_move(cell_3, True)
+    # cell_0.draw_move(cell_1, False)
+    # cell_2.draw_move(cell_3, True)
+    maze_0 = Maze(0, 0, 12, 16, 50, 50, win)
 
     win.wait_for_close()
 
