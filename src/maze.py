@@ -28,7 +28,7 @@ class Maze:
     def _create_cells(self):
         for i in range(0, self.num_cols):
             for j in range(0, self.num_rows):
-                self._cells[i][j] = Cell(True, True, True, True, 0, 0, 0, 0, self.win)
+                self._cells[i][j] = Cell(self.win)
         
         for i in range(0, self.num_cols):
             for j in range(0, self.num_rows):
