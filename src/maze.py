@@ -65,38 +65,45 @@ class Maze:
         self._cells[i][j].visited = True
         while True:
             possible_directions = []
-            #Left
+            # Left
             if i - 1 >= 0 and self._cells[i-1][j].visited == False:
                 possible_directions.append((i - 1, j))
-            #Right
+            # Right
             if i + 1 < self.num_cols and self._cells[i + 1][j].visited == False:
                 possible_directions.append((i + 1, j))
-            #Up
+            # Up
             if j - 1 >= 0 and self._cells[i][j - 1].visited == False:
                 possible_directions.append((i, j - 1))
-            #Down
+            # Down
             if j + 1 < self.num_rows and self._cells[i][j + 1].visited == False:
                 possible_directions.append((i, j + 1))
+            
             if len(possible_directions) == 0:
                 self._draw_cell(i, j)
                 return
+           
+            # Pick a direction
             direction = random.randrange(0, len(possible_directions))
             next_cell_x = possible_directions[direction][0]
             next_cell_y = possible_directions[direction][1]
 
-            if next_cell_x < i:
+            # Break down the walls
+            if next_cell_x == i - 1:
                 self._cells[i][j].has_left_wall = False
                 self._cells[next_cell_x][next_cell_y].has_right_wall = False
-            if next_cell_x > i:
+                # print(f"Moving left from {i}:{j} to {next_cell_x}{next_cell_y}")
+            if next_cell_x == i + 1:
                 self._cells[i][j].has_right_wall = False
                 self._cells[next_cell_x][next_cell_y].has_left_wall = False
-            if next_cell_y < j:
-                self._cells[i][j].has_bottom_wall = False
-                self._cells[next_cell_x][next_cell_y].has_top_wall = False
-            if next_cell_y > j:
+                # print(f"Moving right from {i}:{j} to {next_cell_x}{next_cell_y}")
+            if next_cell_y == j - 1:
                 self._cells[i][j].has_top_wall = False
                 self._cells[next_cell_x][next_cell_y].has_bottom_wall = False
-            self._draw_cell(i, j)
-            self._draw_cell(next_cell_x, next_cell_y)
+                # print(f"Moving up from {i}:{j} to {next_cell_x}{next_cell_y}")
+            elif next_cell_y ==  j + 1:
+                self._cells[i][j].has_bottom_wall = False
+                self._cells[next_cell_x][next_cell_y].has_top_wall = False
+                # print(f"Moving down from {i}:{j} to {next_cell_x}{next_cell_y}")
+            
+            # Move to the next cell
             self._break_walls_r(next_cell_x, next_cell_y)
-            return
